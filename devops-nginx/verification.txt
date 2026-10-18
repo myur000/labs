@@ -1,0 +1,48 @@
+Проверка практической части DevOps, 19.10.2026
+Учебные данные; сеть и Telegram не используются.
+
+$ python3 --version
+Python 3.9.6
+
+Код завершения: 0
+
+$ python3 generate_sample.py
+Создан sample_access.log: 107 строк.
+
+Код завершения: 0
+
+$ python3 analyze_logs.py --log sample_access.log
+Прочитано строк: 107
+Пропущено некорректных строк: 2
+Ответов с кодом 404: 101
+Уникальных IP с кодом 404: 2
+Обнаружена подозрительная активность! IP 192.0.2.10: ответов с кодом 404 — 51 (порог: > 50).
+Режим локального анализа: отправка в Telegram отключена.
+
+Код завершения: 0
+
+$ python3 analyze_logs.py --log sample_access.log --status 403 --threshold 0
+Прочитано строк: 107
+Пропущено некорректных строк: 2
+Ответов с кодом 403: 1
+Уникальных IP с кодом 403: 1
+Обнаружена подозрительная активность! IP 2001:db8::1: ответов с кодом 403 — 1 (порог: > 0).
+Режим локального анализа: отправка в Telegram отключена.
+
+Код завершения: 0
+
+$ python3 -m unittest -v
+test_does_not_count_404_in_url_or_user_agent (test_analyze_logs.LogAnalysisTests) ... ok
+test_empty_log (test_analyze_logs.LogAnalysisTests) ... ok
+test_invalid_lines_and_ip_are_skipped (test_analyze_logs.LogAnalysisTests) ... ok
+test_ipv6_and_another_status (test_analyze_logs.LogAnalysisTests) ... ok
+test_missing_file (test_analyze_logs.LogAnalysisTests) ... ok
+test_sample (test_analyze_logs.LogAnalysisTests) ... ok
+test_threshold_is_strict (test_analyze_logs.LogAnalysisTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.003s
+
+OK
+
+Код завершения: 0
