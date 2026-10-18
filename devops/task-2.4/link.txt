@@ -1,0 +1,4 @@
+# Для примера сначала запустите demo_server.py.
+http://127.0.0.1:8000/page.html
+http://127.0.0.1:8000/stable.html
+http://127.0.0.1:8000/missing.html

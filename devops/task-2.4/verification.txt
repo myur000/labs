@@ -1,0 +1,65 @@
+Задание 2.4. Проверка 19.10.2026. Python 3.12.14, requests 2.34.2.
+
+Обход first
+$ python3 check_pages.py
+Проверено страниц: 3, ошибок: 1.
+Отчет сохранен в report.txt, состояние — в hashes.json.
+[NEW] http://127.0.0.1:8000/page.html — первый успешный обход
+[NEW] http://127.0.0.1:8000/stable.html — первый успешный обход
+[ERROR] http://127.0.0.1:8000/missing.html — 404 Client Error: File not found for url: http://127.0.0.1:8000/missing.html
+Код завершения: 1 (ожидается 1 из-за учебного адреса /missing.html).
+
+Обход second
+$ python3 check_pages.py
+Проверено страниц: 3, ошибок: 1.
+Отчет сохранен в report.txt, состояние — в hashes.json.
+[OK] http://127.0.0.1:8000/page.html — без изменений
+[OK] http://127.0.0.1:8000/stable.html — без изменений
+[ERROR] http://127.0.0.1:8000/missing.html — 404 Client Error: File not found for url: http://127.0.0.1:8000/missing.html
+Код завершения: 1 (ожидается 1 из-за учебного адреса /missing.html).
+
+Обход third
+$ python3 check_pages.py
+Проверено страниц: 3, ошибок: 1.
+Отчет сохранен в report.txt, состояние — в hashes.json.
+[CHANGED] http://127.0.0.1:8000/page.html — контент изменился
+[OK] http://127.0.0.1:8000/stable.html — без изменений
+[ERROR] http://127.0.0.1:8000/missing.html — 404 Client Error: File not found for url: http://127.0.0.1:8000/missing.html
+Код завершения: 1 (ожидается 1 из-за учебного адреса /missing.html).
+
+Обход error
+$ python3 check_pages.py
+Проверено страниц: 3, ошибок: 2.
+Отчет сохранен в report.txt, состояние — в hashes.json.
+[ERROR] http://127.0.0.1:8000/page.html — 404 Client Error: File not found for url: http://127.0.0.1:8000/page.html
+[OK] http://127.0.0.1:8000/stable.html — без изменений
+[ERROR] http://127.0.0.1:8000/missing.html — 404 Client Error: File not found for url: http://127.0.0.1:8000/missing.html
+Код завершения: 1 (ожидается 1 из-за учебного адреса /missing.html).
+
+Обход recovery
+$ python3 check_pages.py
+Проверено страниц: 3, ошибок: 1.
+Отчет сохранен в report.txt, состояние — в hashes.json.
+[OK] http://127.0.0.1:8000/page.html — без изменений
+[OK] http://127.0.0.1:8000/stable.html — без изменений
+[ERROR] http://127.0.0.1:8000/missing.html — 404 Client Error: File not found for url: http://127.0.0.1:8000/missing.html
+Код завершения: 1 (ожидается 1 из-за учебного адреса /missing.html).
+
+Подтверждено: ошибка не меняет предыдущий хеш; восстановленная страница совпала с последней успешной версией.
+
+$ python3 -m unittest -v
+test_comments_bom_blank_lines_and_duplicates (test_check_pages.PageChangeTests.test_comments_bom_blank_lines_and_duplicates) ... ok
+test_corrupt_state_is_not_overwritten (test_check_pages.PageChangeTests.test_corrupt_state_is_not_overwritten) ... ok
+test_empty_list (test_check_pages.PageChangeTests.test_empty_list) ... ok
+test_error_does_not_stop_other_urls (test_check_pages.PageChangeTests.test_error_does_not_stop_other_urls) ... ok
+test_failed_first_request_does_not_create_baseline (test_check_pages.PageChangeTests.test_failed_first_request_does_not_create_baseline) ... ok
+test_failure_preserves_previous_hash (test_check_pages.PageChangeTests.test_failure_preserves_previous_hash) ... ok
+test_first_unchanged_changed_and_updated_baseline (test_check_pages.PageChangeTests.test_first_unchanged_changed_and_updated_baseline) ... ok
+test_http_error_is_not_hashed (test_check_pages.PageChangeTests.test_http_error_is_not_hashed) ... ok
+test_report_is_replaced_and_hashes_are_persistent (test_check_pages.PageChangeTests.test_report_is_replaced_and_hashes_are_persistent) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.015s
+
+OK
+
