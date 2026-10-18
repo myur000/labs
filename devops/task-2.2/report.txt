@@ -1,0 +1,6 @@
+http://127.0.0.1:8000/ok -> Ok
+http://127.0.0.1:8000/redirect -> Ok
+http://127.0.0.1:8000/missing -> Error
+http://127.0.0.1:8000/server-error -> Error
+неверный-адрес -> Error
+ftp://example.com/ -> Error
